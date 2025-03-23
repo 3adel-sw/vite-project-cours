@@ -1,14 +1,7 @@
 import styles from "./header.module.css";
 
-function Navbar() {
-  const links = [
-    { title: "Home", url: "/" },
-    { title: "About", url: "/about" },
-    { title: "Contact", url: "/contact" },
-    { title: "Services", url: "/services" },
-    { title: "Portfolio", url: "/portfolio" },
-  ];
-  console.log(links);
+//eslint-disable-next-line react/prop-types
+function Navbar({ links }) {
   return (
     <nav>
       <ul className={styles.list}>
