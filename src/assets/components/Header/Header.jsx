@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
-// import "./Header.css";
 import styles from "./header.module.css";
+// import "./Header.css";
+import "./header.module.css";
 
 const Header = () => {
   const links = [
