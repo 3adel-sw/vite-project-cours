@@ -1,14 +1,16 @@
 // File: App.tsx
 
-import React from "react";
-
 import "./App.css";
+import { useState } from "react";
 
 import Form from "./assets/components/form/Form";
 
 import Header from "./assets/components/header/Header";
 
 import Products from "./assets/components/products/Products";
+import Button from "./assets/components/Button";
+// fills Bootstrap CSS from node_modules
+// import "./assets/bootstrap.min.css";
 
 import "./assets/components/products/Products.module.css";
 
@@ -43,9 +45,17 @@ const App = () => {
   return (
     <>
       <Header />
+
       <Form />
       <Products products={products} />
+      <Button onClick={() => console.log("click me button")}>
+        <span>Click Me </span>
+      </Button>
+      <Button onClick={() => console.log("click me again")}>
+        <span>Click Me Again </span>
+      </Button>
     </>
   );
 };
 export default App;
+// th is is a comment in JSX Setion 16
