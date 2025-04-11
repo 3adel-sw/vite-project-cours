@@ -45,3 +45,24 @@ a {
   color: white;
   font-weight: bold;
 }
+
+.count {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  background-color: #61dafbaa;
+  border: 1px #646cffaa solid;
+  border-radius: 50%;
+}
+
+.count span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: translate(0px, 65px);
+}
+
+button {
+  margin: 10px;
+}
