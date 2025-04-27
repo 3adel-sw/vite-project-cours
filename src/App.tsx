@@ -10,25 +10,94 @@ import Header from "./assets/components/header/Header";
 import Products from "./assets/components/products/Products";
 import Button from "./assets/components/Button";
 // fills Bootstrap CSS from node_modules
-// import "./assets/bootstrap.min.css";
+import "./assets/bootstrap.min.css";
 
 import "./assets/components/products/Products.module.css";
 
 const App = () => {
-  const [input, setinpit] = useState("");
+  const [username, setUsername] = useState("Adel");
+  const [password, setPassword] = useState("2025");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(username);
+    console.log(password);
+  };
   return (
     <>
       <h1>Hello React</h1>
-      <input
-        type="text"
-        placeholder="Enter Your Name"
-        // onChange={(e) => console.log(e.target.value)}
-        onChange={(e) => setinpit(e.target.value)}
-      />
-      <p>Your Name Is {input}</p>
+      <form className="m-2 " onSubmit={handleSubmit}>
+        <label htmlFor="username" className="m-2">
+          UserName
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Your Name"
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          id="username"
+        />
+        <label className="m-2" htmlFor="password">
+          Password
+        </label>
+        <input
+          type="password"
+          placeholder="Enter Your Password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          id="password"
+          className="m-2" // code style
+        />
+        <button type="submit" className="btn btn-primary m-2">
+          logen
+        </button>
+      </form>
     </>
   );
 };
+
+// const App = () => {
+//   const [user, setUser] = useState({
+//     fistName: "Adel",
+//     lastName: "Mahmoud",
+//   });
+//   return (
+//     <>
+//       <h1>
+//         Hello {user.fistName} {user.lastName}
+//       </h1>
+//       <button
+//         type="button"
+//         onClick={() =>
+//           setUser((next) => {
+//             return { ...next, lastName: "Melegy" }; // to change lastName
+//             // return { ...next, fistName: "Melegy" }; // to change fistName
+//           })
+//         }
+//       >
+//         Change lastName
+//       </button>
+//     </>
+//   );
+// };
+
+// const App = () => {
+//   const [input, setinpit] = useState("");
+//   return (
+//     <>
+//       <h1>Hello React</h1>
+//       <input
+//         type="text"
+//         placeholder="Enter Your Name"    // 043469
+//         value={input}
+//         // onChange={(e) => console.log(e.target.value)}
+//         onChange={(e) => setinpit(e.target.value)}
+//       />
+//       <p>Your Name Is {input}</p>
+//     </>
+//   );
+// };
 
 // const App = () => {
 //   const [count, setCount] = useState(0);
@@ -96,4 +165,4 @@ const App = () => {
 //   );
 // };
 export default App;
-// th is is a comment in JSX Setion 17
+// th is is a comment in JSX Setion 18
