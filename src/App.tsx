@@ -43,7 +43,14 @@ const App = () => {
   return (
     <>
       <h1> Hello API</h1>
-      {JSON.stringify(fetchedData)}
+      <ul>
+        {fetchedData.slice(0, 9).map((item) => (
+          <li key={item.id}>
+            <h2>{item.title}</h2>
+            <img src={item.url} alt={item.title} width="30px" height="300px" />
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
