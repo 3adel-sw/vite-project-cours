@@ -1,6 +1,7 @@
 // File: App.tsx
 
 import "./App.css";
+import { useEffect } from "react";
 import { useState } from "react";
 
 import Form from "./assets/components/form/Form";
@@ -13,49 +14,86 @@ import Button from "./assets/components/Button";
 import "./assets/bootstrap.min.css";
 
 import "./assets/components/products/Products.module.css";
-
 const App = () => {
-  const [username, setUsername] = useState("Adel");
-  const [password, setPassword] = useState("2025");
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(username);
-    console.log(password);
-  };
+  const [fetchedData, setFetchedData] = useState([]);
+
+  useEffect(() => {
+    // call api => async Function
+    // ES 7
+    const getdata = async () => {
+      try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const data = await res.json();
+        setFetchedData(data); // set the value
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getdata();
+  }, []);
+
+  console.log(fetchedData);
+
+  // ES 6
+  // fetch("https://jsonplaceholder.typicode.com/posts")
+  //   .then((res) => res.json())
+  //   .then((data) => console.log(data))
+  //   .catch((error) => console.log(error));
+
   return (
     <>
-      <h1>Hello React</h1>
-      <form className="m-2 " onSubmit={handleSubmit}>
-        <label htmlFor="username" className="m-2">
-          UserName
-        </label>
-        <input
-          type="text"
-          placeholder="Enter Your Name"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          id="username"
-        />
-        <label className="m-2" htmlFor="password">
-          Password
-        </label>
-        <input
-          type="password"
-          placeholder="Enter Your Password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          id="password"
-          className="m-2" // code style
-        />
-        <button type="submit" className="btn btn-primary m-2">
-          logen
-        </button>
-      </form>
+      <h1> Hello API</h1>
+      {JSON.stringify(fetchedData)}
     </>
   );
 };
+
+// Form Submission with usestat seshion 18
+// const App = () => {
+//   const [username, setUsername] = useState("Adel");
+//   const [password, setPassword] = useState("2025");
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (username === "" && password === "") {
+//       alert("Please Enter Your Name and Password");
+//     }
+//     // Send this data to backend Server api
+//     console.log({ username, password });
+//   };
+//   return (
+//     <>
+//       <h1>Hello React</h1>
+//       <form className="m-2 " onSubmit={handleSubmit}>
+//         <label htmlFor="username" className="m-2">
+//           UserName
+//         </label>
+//         <input
+//           type="text"
+//           placeholder="Enter Your Name"
+//           name="username"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//           id="username"
+//         />
+//         <label className="m-2" htmlFor="password">
+//           Password
+//         </label>
+//         <input
+//           type="password"
+//           placeholder="Enter Your Password"
+//           name="password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           id="password"
+//           className="m-2" // code style
+//         />
+//         <button type="submit" className="btn btn-primary m-2">
+//           logen
+//         </button>
+//       </form>
+//     </>
+//   );
+// };
 
 // const App = () => {
 //   const [user, setUser] = useState({
@@ -165,4 +203,4 @@ const App = () => {
 //   );
 // };
 export default App;
-// th is is a comment in JSX Setion 18
+// th is is a comment in JSX Setion 18 >> 19 >> 20  >> 21 >> 22
