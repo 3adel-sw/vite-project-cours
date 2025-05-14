@@ -3,6 +3,7 @@
 import "./App.css";
 import { useEffect } from "react";
 import { useState } from "react";
+import ClimbingBoxLoader from "react-spinners/BeatLoader";
 
 import Form from "./assets/components/form/Form";
 
@@ -16,17 +17,28 @@ import "./assets/bootstrap.min.css";
 import "./assets/components/products/Products.module.css";
 const App = () => {
   const [fetchedData, setFetchedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     // call api => async Function
     // ES 7
     const getdata = async () => {
       try {
-        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        setIsLoading(true);
+        const res = await fetch("https://jsonplaceholder.typicode.com/photos");
         const data = await res.json();
-        setFetchedData(data); // set the value
+        if (res.status === 200) {
+          setFetchedData(data); // set the value
+          setIsLoading(false);
+        } else {
+          setErrorMessage("Something went wrong");
+          setIsLoading(false);
+        }
       } catch (error) {
+        setErrorMessage(JSON.stringify(error));
         console.log(error);
+        setIsLoading(false);
       }
     };
     getdata();
@@ -43,14 +55,23 @@ const App = () => {
   return (
     <>
       <h1> Hello API</h1>
-      <ul>
-        {fetchedData.slice(0, 9).map((item) => (
-          <li key={item.id}>
-            <h2>{item.title}</h2>
-            <img src={item.url} alt={item.title} width="30px" height="300px" />
-          </li>
-        ))}
-      </ul>
+      {isLoading && <ClimbingBoxLoader size={18} color="#ffffff" />}
+      {!isLoading && errorMessage && <p>{errorMessage}</p>}
+      {!isLoading && fetchedData.length > 0 && (
+        <ul>
+          {fetchedData.slice(0, 9).map((item) => (
+            <li key={item.id}>
+              <h2>{item.title}</h2>
+              <img
+                src={item.url}
+                alt={item.title}
+                width="300px"
+                height="300px"
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
@@ -210,4 +231,4 @@ const App = () => {
 //   );
 // };
 export default App;
-// th is is a comment in JSX Setion 18 >> 19 >> 20  >> 21 >> 22
+// th is is a comment in JSX Setion 18 >> 19 >> 20  >> 21 >> 22 >>
