@@ -1,7 +1,7 @@
 // File: App.tsx
 
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import ClimbingBoxLoader from "react-spinners/BeatLoader";
 
@@ -15,66 +15,85 @@ import Button from "./assets/components/Button";
 import "./assets/bootstrap.min.css";
 
 import "./assets/components/products/Products.module.css";
+
 const App = () => {
-  const [fetchedData, setFetchedData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
+  const shouldLod = useRef(true);
   useEffect(() => {
-    // call api => async Function
-    // ES 7
-    const getdata = async () => {
-      try {
-        setIsLoading(true);
-        const res = await fetch("https://jsonplaceholder.typicode.com/photos");
-        const data = await res.json();
-        if (res.status === 200) {
-          setFetchedData(data); // set the value
-          setIsLoading(false);
-        } else {
-          setErrorMessage("Something went wrong");
-          setIsLoading(false);
-        }
-      } catch (error) {
-        setErrorMessage(JSON.stringify(error));
-        console.log(error);
-        setIsLoading(false);
-      }
-    };
-    getdata();
+    if (shouldLod.current) {
+      shouldLod.current = false;
+      console.log("Hello React");
+    }
   }, []);
-
-  console.log(fetchedData);
-
-  // ES 6
-  // fetch("https://jsonplaceholder.typicode.com/posts")
-  //   .then((res) => res.json())
-  //   .then((data) => console.log(data))
-  //   .catch((error) => console.log(error));
 
   return (
     <>
-      <h1> Hello API</h1>
-      {isLoading && <ClimbingBoxLoader size={18} color="#ffffff" />}
-      {!isLoading && errorMessage && <p>{errorMessage}</p>}
-      {!isLoading && fetchedData.length > 0 && (
-        <ul>
-          {fetchedData.slice(0, 9).map((item) => (
-            <li key={item.id}>
-              <h2>{item.title}</h2>
-              <img
-                src={item.url}
-                alt={item.title}
-                width="300px"
-                height="300px"
-              />
-            </li>
-          ))}
-        </ul>
-      )}
+      <h1>Hello Vite + React + TS</h1>
     </>
   );
 };
+
+// Data Fetching with API
+
+// const App = () => {
+//   const [fetchedData, setFetchedData] = useState([]);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [errorMessage, setErrorMessage] = useState("");
+
+//   useEffect(() => {
+//     // call api => async Function
+//     // ES 7
+//     const getdata = async () => {
+//       try {
+//         setIsLoading(true);
+//         const res = await fetch("https://jsonplaceholder.typicode.com/photos");
+//         const data = await res.json();
+//         if (res.status === 200) {
+//           setFetchedData(data); // set the value
+//           setIsLoading(false);
+//         } else {
+//           setErrorMessage("Something went wrong");
+//           setIsLoading(false);
+//         }
+//       } catch (error) {
+//         setErrorMessage(JSON.stringify(error));
+//         console.log(error);
+//         setIsLoading(false);
+//       }
+//     };
+//     getdata();
+//   }, []);
+
+//   console.log(fetchedData);
+
+//   // ES 6
+//   // fetch("https://jsonplaceholder.typicode.com/posts")
+//   //   .then((res) => res.json())
+//   //   .then((data) => console.log(data))
+//   //   .catch((error) => console.log(error));
+
+//   return (
+//     <>
+//       <h1> Hello API</h1>
+//       {isLoading && <ClimbingBoxLoader size={18} color="#ffffff" />}
+//       {!isLoading && errorMessage && <p>{errorMessage}</p>}
+//       {!isLoading && fetchedData.length > 0 && (
+//         <ul>
+//           {fetchedData.slice(0, 9).map((item) => (
+//             <li key={item.id}>
+//               <h2>{item.title}</h2>
+//               <img
+//                 src={item.url}
+//                 alt={item.title}
+//                 width="300px"
+//                 height="300px"
+//               />
+//             </li>
+//           ))}
+//         </ul>
+//       )}
+//     </>
+//   );
+// };
 
 // Form Submission with usestat seshion 18
 // const App = () => {
