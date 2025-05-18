@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <>
-      <h1>Hello Vite + React + TS</h1>
+      <h1>UseEffect</h1>
     </>
   );
 };
