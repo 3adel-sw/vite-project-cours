@@ -1,15 +1,13 @@
 import { UsernameContext } from "../../../App";
+import { useContext } from "react";
 
 const Last = () => {
+  const username = useContext(UsernameContext);
   return (
     <div>
-      <UsernameContext.Consumer>
-        {(username) => (
-          <h2 style={{ color: "green", fontSize: "30px" }}>
-            My name's Eng/ {username}
-          </h2>
-        )}
-      </UsernameContext.Consumer>
+      <h1 style={{ color: "red", fontSize: "30px", fontWeight: "bold" }}>
+        My name's Eng/ {username}
+      </h1>
     </div>
   );
 };
