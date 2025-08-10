@@ -1,36 +1,73 @@
-// File: App.tsx
-
 import "./App.css";
-import { useEffect, useRef } from "react";
-import { useState } from "react";
-import ClimbingBoxLoader from "react-spinners/BeatLoader";
 
-import Form from "./assets/components/form/Form";
+import Tpo from "../src/assets//components/products/Top";
+import { createContext } from "react";
 
-import Header from "./assets/components/header/Header";
-
-import Products from "./assets/components/products/Products";
-import Button from "./assets/components/Button";
-// fills Bootstrap CSS from node_modules
-import "./assets/bootstrap.min.css";
-
-import "./assets/components/products/Products.module.css";
+export const UsernameContext = createContext();
 
 const App = () => {
-  const shouldLod = useRef(true);
-  useEffect(() => {
-    if (shouldLod.current) {
-      shouldLod.current = false;
-      console.log("Hello React");
-    }
-  }, []);
-
+  const username = "dolla Mahmoud";
   return (
     <>
-      <h1>UseEffect</h1>
+      <UsernameContext.Provider value={username}>
+        <h1>Hello React Context</h1>
+        <Tpo />
+      </UsernameContext.Provider>
     </>
   );
 };
+export default App;
+
+// File: App.tsx
+
+// import "./App.css";
+// import { createContext, useEffect, useRef } from "react";
+// import { useState } from "react";
+// import ClimbingBoxLoader from "react-spinners/BeatLoader";
+
+// import Form from "./assets/components/form/Form";
+
+// import Header from "./assets/components/header/Header";
+
+// import Products from "./assets/components/products/Products";
+// import Button from "./assets/components/Button";
+// // fills Bootstrap CSS from node_modules
+// import "./assets/bootstrap.min.css";
+
+// import "./assets/components/products/Products.module.css";
+// import Top from "./assets/components/products/Top";
+
+// Context API ex1 >>
+
+// export const UsernameContext = createContext();
+// const App = () => {
+//   const username = "Adel Mahmoud";
+//   return (
+//     <>
+//       <UsernameContext.Provider value={username}>
+//         <h1>Hello React Context</h1>
+
+//         <Top Username={username} />
+//       </UsernameContext.Provider>
+//     </>
+//   );
+// };
+
+// const App = () => {
+//   const shouldLod = useRef(true);
+//   useEffect(() => {
+//     if (shouldLod.current) {
+//       shouldLod.current = false;
+//       console.log("Hello React");
+//     }
+//   }, []);
+
+//   return (
+//     <>
+//       <h1>Hello React Context</h1>
+//     </>
+//   );
+// };
 
 // Data Fetching with API
 
@@ -249,5 +286,5 @@ const App = () => {
 //     </>
 //   );
 // };
-export default App;
+// export default App;
 // th is is a comment in JSX Setion 18 >> 19 >> 20  >> 21 >> 22 >>
