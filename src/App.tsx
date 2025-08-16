@@ -1,19 +1,72 @@
+import { useEffect } from "react";
 import "./App.css";
+import { useState } from "react";
+import Products from "./assets/components/products/Products";
 
-import Tpo from "../src/assets//components/products/Top";
-import { createContext } from "react";
-
-export const UsernameContext = createContext();
+const dummyData = [
+  {
+    title:
+      "إصدار Amazon Kindle Paperwhite Signature Edition (32 جيجابايت) – أسرع جهاز Kindle لدينا مع إضاءة أمامية قابلة للتعديل تلقائيًا",
+    img: "https://m.media-amazon.com/images/I/515+sHffstL._AC_UL320_.jpg",
+    read: 3,
+    price: 6999,
+    insteadOf: 7500,
+  },
+  {
+    title:
+      "جهاز Kindle Paperwhite من أمازون (16 جيجابايت) – أسرع أجهزتنا من Kindle على الإطلاق بشاشة جديدة مقاس 7 بوصات خالية من الوه...",
+    img: "https://m.media-amazon.com/images/I/51ksB-Z8EcL._AC_UL320_.jpg",
+    read: 4,
+    price: 7999,
+    insteadOf: 7500,
+  },
+  {
+    title:
+      "جهاز أمازون Kindle (16 جيجابايت) - جهاز Kindle الأخف والأصغر حجمًا بشاشة بدون توهّج وتصفّح أسرع وإضاءة أمامية قابلة للتعديل...",
+    img: "https://m.media-amazon.com/images/I/51CTqXQw4YL._AC_UL320_.jpg",
+    read: 5,
+    price: 8999,
+    insteadOf: 7500,
+  },
+  {
+    title:
+      "جهاز أمازون Kindle (16 جيجابايت) - جهاز Kindle الأخف والأصغر حجمًا بشاشة بدون توهّج وتصفّح أسرع عبر الصفحات وإضاءة أمامية ...",
+    img: "https://m.media-amazon.com/images/I/51A81R5PX1L._AC_UL320_.jpg",
+    read: 4,
+    price: 9999,
+    insteadOf: 7500,
+  },
+];
 
 const App = () => {
-  const username = "dolla Mahmoud";
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // call Api
+    const getData = async () => {
+      setIsLoading(true);
+      await // Simulate API call with a timeout
+      new Promise((resolve) =>
+        setTimeout(resolve, Math.random() * 1000 + 500)
+      ).then(() => {
+        setProducts(dummyData);
+        setIsLoading(false);
+      });
+    };
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
-    <>
-      <UsernameContext.Provider value={username}>
-        <h1>Hello React Context</h1>
-        <Tpo />
-      </UsernameContext.Provider>
-    </>
+    <div className="container p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-xl font-bold mb-6">النتائج</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {isLoading && (
+          <p style={{ color: "red", fontSize: "4rem" }}> Loading...</p>
+        )}
+        {!isLoading && products && <Products products={products} />}
+      </div>
+    </div>
   );
 };
 export default App;

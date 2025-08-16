@@ -2,3 +2,65 @@
   display: flex;
   gap: 1rem;
 }
+
+.product {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 200px;
+}
+
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+.products-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 200px;
+}
+
+p {
+  text-align: center;
+  color: #000000;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    color: brown;
+  }
+}
+
+.product-price {
+  text-align: center;
+  color: #fff;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
