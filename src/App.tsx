@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import "./App.css";
 import { useState } from "react";
 import Products from "./assets/components/products/Products";
+import { Toaster } from "react-hot-toast";
 
 const dummyData = [
   {
@@ -66,6 +67,7 @@ const App = () => {
         )}
         {!isLoading && products && <Products products={products} />}
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
